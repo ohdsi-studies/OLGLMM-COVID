@@ -25,7 +25,7 @@ remotes::install_github('ohdsi-studies/OLGLMM-COVID')
 Now run the following code to extract summary data for each wave (but use your dates):
 
 ```r
-olglmmCovid::executeProspective(
+olglmmCovid:::executeProspective(
   databaseDetails = databaseDetails,
   siteId = siteId,
   outputFolder = outputFolder,
@@ -105,7 +105,7 @@ n <- dplyr::n
 left_join <- dplyr::left_join
 row.match <- prodlim::row.match
 
-executeProspective(
+olglmmCovid:::executeProspective(
   databaseDetails = databaseDetails,
   siteId = siteId,
   outputFolder = outputFolder,
