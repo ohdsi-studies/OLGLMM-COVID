@@ -17,10 +17,15 @@ Instructions To Run Study For Any Dates
 
 ## Step 1 - Download the data for each wave of interest
 
+Update the stdy package
+```r
+remotes::install_github('ohdsi-studies/OLGLMM-COVID')
+```
+
 Now run the following code to extract summary data for each wave (but use your dates):
 
 ```r
-executeProspective(
+olglmmCovid::executeProspective(
   databaseDetails = databaseDetails,
   siteId = siteId,
   outputFolder = outputFolder,
