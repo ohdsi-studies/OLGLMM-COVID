@@ -37,7 +37,7 @@ olglmmCovid:::executeProspective(
   verbosity = "INFO",
   dates = list(
     omicron_1 = list(startDate = '20211101', endDate = '20220228'),
-    omicron_2 = list(startDate = '20220301', endDate = '20220631'),
+    omicron_2 = list(startDate = '20220301', endDate = '20220630'),
     omicron_3 = list(startDate = '20220701', endDate = '20221101')
   )
     )
