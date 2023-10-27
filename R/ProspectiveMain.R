@@ -308,6 +308,13 @@ executeProspective <- function(
         
         ipdata <- utils::read.csv(file.path(outputFolder, wave, 'data.csv'))
         
+        # if status rather than outcome
+        if(control$outcome != 'status'){
+          ParallelLogger::logWarn('Editing control to use status for outcome')
+          control$outcome <- 'status'
+          ParallelLogger::saveSettingsToJson(control, jsonFileLocation[[wave]])
+        }
+        
         if(!is.null(control)){
           pda::pda(
             ipdata = ipdata, 
