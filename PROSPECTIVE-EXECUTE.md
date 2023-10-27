@@ -12,19 +12,54 @@ Instructions To Run Study For Any Dates
 
 - Create a directory where you want to save the results to.  We will refer to this directory as `outputFolder`.  Create a folder named `<project name>` in the `outputFolder`.
 
-- For each wave, please place the corresponding control.json file into the `outputFolder/<project name>`.
+- For each wave, please place the corresponding control.json file into the `outputFolder/<project name>`.  For example, `outputFolder/omicron_1`, `outputFolder/omicron_2` and `outputFolder/omicron_3`.
 
 
 ## Step 1 - Download the data for each wave of interest
 
-Update the stdy package
+Update the stdy package and pda
 ```r
+remotes::install_github('penncil/pda')
 remotes::install_github('ohdsi-studies/OLGLMM-COVID')
 ```
 
 Now run the following code to extract summary data for each wave (but use your dates):
 
 ```r
+
+library(olglmmCovid)
+# USER INPUTS
+#=======================
+
+siteId <- 'an id given to you by the study lead'
+
+# The folder where the study intermediate and result files will be written:
+outputFolder <- "your dirctory to save results" # e.g., "C:/OLGLMMResults"
+
+# Details for connecting to the server:
+dbms <- "you dbms"
+user <- 'your username'
+pw <- 'your password'
+server <- 'your server'
+port <- 'your port'
+
+connectionDetails <- DatabaseConnector::createConnectionDetails(dbms = dbms,
+                                                                server = server,
+                                                                user = user,
+                                                                password = pw,
+                                                                port = port)
+
+# Add the database containing the OMOP CDM data
+cdmDatabaseSchema <- 'cdm database schema'
+
+# Add a database with read/write access as this is where the cohorts will be generated
+cohortDatabaseSchema <- 'work database schema'
+
+tempEmulationSchema <- NULL
+
+# table name where the cohorts will be generated
+cohortTable <- 'olglmm_covid'
+
 olglmmCovid:::executeProspective(
   databaseDetails = databaseDetails,
   siteId = siteId,
