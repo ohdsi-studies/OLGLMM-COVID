@@ -60,6 +60,19 @@ tempEmulationSchema <- NULL
 # table name where the cohorts will be generated
 cohortTable <- 'olglmm_covid'
 
+databaseDetails <- PatientLevelPrediction::createDatabaseDetails(
+  connectionDetails = connectionDetails, 
+  cdmDatabaseSchema = cdmDatabaseSchema, 
+  cdmDatabaseName = cdmDatabaseSchema,
+  tempEmulationSchema = tempEmulationSchema,
+  cohortDatabaseSchema = cohortDatabaseSchema,
+  cohortTable = cohortTable,
+  outcomeDatabaseSchema = cohortDatabaseSchema,
+  outcomeTable = cohortTable,
+  cdmVersion = 5
+)
+
+
 olglmmCovid:::executeProspective(
   databaseDetails = databaseDetails,
   siteId = siteId,
